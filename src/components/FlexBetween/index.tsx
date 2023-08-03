@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const FlexBetween = styled(Box)({
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
 });
 
 export default FlexBetween

@@ -1,20 +1,36 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import modeSlice from "./slices/mode.slice";
 import { useDispatch, useSelector } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
 import { userApi } from "./RTK/userApi";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import userSlice from "./slices/user.slice";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import thunk from 'redux-thunk';
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+const userReducer = combineReducers({
+  mode: modeSlice.reducer,
+  user: userSlice.reducer,
+  [userApi.reducerPath]: userApi.reducer,
+});
+const persistedReducer = persistReducer(persistConfig, userReducer);
 
 const store = configureStore({
-  reducer: {
-    mode: modeSlice.reducer,
-    user: userSlice.reducer,
-    [userApi.reducerPath]: userApi.reducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(userApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: true,
+      },
+    }).concat(thunk, userApi.middleware),
 });
+
+export const persistor = persistStore(store);
 
 setupListeners(store.dispatch);
 

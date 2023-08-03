@@ -59,7 +59,7 @@ const Navbar: FC<NavbarProps> = ({
               backgroundColor: `${
                 theme.palette["mode"] === "dark"
                   ? theme.palette.primary.dark
-                  : theme.palette.primary.light
+                  : "#f4f4f4"
               }`,
             }}
             borderRadius="9px"

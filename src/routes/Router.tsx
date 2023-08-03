@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useMemo } from "react";
 import {
   CssBaseline,
@@ -22,11 +22,12 @@ const Router = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-            <Route path="dashboard" element={<Layout />} >
-                <Route index element={<Dashboard />} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="products" element={<Products />} />
-            </Route>
+          <Route path="/" element={<Navigate to="/dashboard/main" />} />
+          <Route path="dashboard" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="main" element={<Dashboard />} />
+            <Route path="products" element={<Products />} />
+          </Route>
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
