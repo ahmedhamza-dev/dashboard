@@ -15,81 +15,14 @@ import {
   SettingsOutlined,
   ChevronLeft,
   ChevronRightOutlined,
-  HomeOutlined,
-  ShoppingCartOutlined,
-  Groups2Outlined,
-  ReceiptLongOutlined,
-  PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
-  AdminPanelSettingsOutlined,
-  TrendingUpOutlined,
-  PieChartOutlined,
 } from "@mui/icons-material";
+
 import { FC, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "../FlexBetween";
 import { SidebarProps } from "./props";
-
-const navItems = [
-  {
-    text: "Dashboard",
-    icon: <HomeOutlined />,
-  },
-  {
-    text: "Client Facing",
-    icon: null,
-  },
-  {
-    text: "Products",
-    icon: <ShoppingCartOutlined />,
-  },
-  {
-    text: "Customers",
-    icon: <Groups2Outlined />,
-  },
-  {
-    text: "Transactions",
-    icon: <ReceiptLongOutlined />,
-  },
-  {
-    text: "Geography",
-    icon: <PublicOutlined />,
-  },
-  {
-    text: "Sales",
-    icon: null,
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
-  {
-    text: "Management",
-    icon: null,
-  },
-  {
-    text: "Admin",
-    icon: <AdminPanelSettingsOutlined />,
-  },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
-  },
-];
+import { useAppSelector } from "../../redux/store";
+import { navItems } from "../../config/data";
 
 const Sidebar: FC<SidebarProps> = ({
   user,
@@ -99,9 +32,10 @@ const Sidebar: FC<SidebarProps> = ({
   isNonMobile,
 }) => {
   const { pathname } = useLocation();
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState(pathname.substring(1) || "");
   const navigate = useNavigate();
   const theme = useTheme();
+  const { mode } = useAppSelector((state) => state.mode);
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -156,33 +90,44 @@ const Sidebar: FC<SidebarProps> = ({
                   <ListItem key={text} disablePadding>
                     <ListItemButton
                       onClick={() => {
-                        navigate(`/${lcText}`);
-                        setActive(lcText);
+                        navigate(`/dashboard/${lcText}`);
+                        setActive(`dashboard/${lcText}`);
                       }}
                       sx={{
                         backgroundColor:
-                          active === lcText
-                            ? theme.palette.secondary.dark
+                          active === `dashboard/${lcText}`
+                            ? theme.palette.secondary.light
                             : "transparent",
                         color:
-                          active === lcText
-                            ? theme.palette.primary.dark
-                            : theme.palette.secondary.dark,
+                          active === `dashboard/${lcText}`
+                            ? mode === "dark"
+                              ? theme.palette.primary.dark
+                              : theme.palette.primary.light
+                            : theme.palette.secondary.light,
+
+                        ":hover": {
+                          backgroundColor:
+                            active === `dashboard/${lcText}`
+                              ? theme.palette.secondary.light
+                              : "transparent",
+                        },
                       }}
                     >
                       <ListItemIcon
                         sx={{
                           ml: "1.5rem",
                           color:
-                            active === lcText
-                              ? theme.palette.primary.dark
-                              : theme.palette.secondary.dark,
+                            active === `dashboard/${lcText}`
+                              ? mode === "dark"
+                                ? theme.palette.primary.dark
+                                : theme.palette.primary.light
+                              : theme.palette.secondary.light,
                         }}
                       >
                         {icon}
                       </ListItemIcon>
                       <ListItemText primary={text} />
-                      {active === lcText && (
+                      {active === `dashboard/${lcText}` && (
                         <ChevronRightOutlined sx={{ ml: "auto" }} />
                       )}
                     </ListItemButton>

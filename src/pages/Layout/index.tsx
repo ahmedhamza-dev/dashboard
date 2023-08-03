@@ -10,23 +10,25 @@ const Layout = () => {
 
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
-        <>
-          <Sidebar
-            user={{_id: '1', name: 'Ahmed Hamza', occupation: "Engineer"}}
-            isNonMobile={isNonMobile}
-            drawerWidth="250px"
+      <>
+        <Sidebar
+          user={{ _id: "1", name: "Ahmed Hamza", occupation: "Engineer" }}
+          isNonMobile={isNonMobile}
+          drawerWidth="250px"
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+        <Box flexGrow={1}>
+          <Navbar
+            user={{ _id: "1", name: "Ahmed Hamza", occupation: "Engineer" }}
             isSidebarOpen={isSidebarOpen}
             setIsSidebarOpen={setIsSidebarOpen}
           />
-          <Box flexGrow={1}>
-            <Navbar
-            user={{_id: '1', name: 'Ahmed Hamza', occupation: "Engineer"}}
-            isSidebarOpen={isSidebarOpen}
-              setIsSidebarOpen={setIsSidebarOpen}
-            />
+          <Box p="0.2rem 1.5rem">
             <Outlet />
           </Box>
-        </>
+        </Box>
+      </>
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useMemo } from "react";
 import {
   CssBaseline,
@@ -10,6 +10,7 @@ import { useAppSelector } from "../redux/store";
 import { themeSettings } from "../config/theme";
 import Layout from "../pages/Layout";
 import Dashboard from "../pages/Dashboard";
+import Products from "../pages/Products";
 const Router = () => {
   const { mode } = useAppSelector((state) => state.mode);
   const theme = useMemo(
@@ -21,9 +22,10 @@ const Router = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-            <Route element={<Layout />} >
-                <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="dashboard" element={<Layout />} >
+                <Route index element={<Dashboard />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="products" element={<Products />} />
             </Route>
         </Routes>
       </ThemeProvider>
