@@ -3,10 +3,11 @@ import React, { useMemo } from 'react';
 import { CssBaseline, PaletteMode, ThemeProvider, createTheme } from '@mui/material';
 import { useAppSelector } from '../redux/store';
 import { themeSettings } from '../config/theme';
-import Layout from '../pages/Layout';
+import Layout from '../pages/Dashboard/Layout';
 import Dashboard from '../pages/Dashboard';
-import HealPackage from '../pages/HealPackage';
-import CreateProduct from '../pages/HealPackage/Create';
+import HealPackage from '../pages/Dashboard/HealPackage';
+import CreateProduct from '../pages/Dashboard/HealPackage/Create';
+import Category from '../pages/Dashboard/Category';
 const Router = () => {
   const { mode } = useAppSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode as PaletteMode)), [mode]);
@@ -19,8 +20,11 @@ const Router = () => {
           <Route path='dashboard' element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path='main' element={<Dashboard />} />
-            <Route path='healPackage' element={<HealPackage />}></Route>
+            <Route path='healPackage' element={<HealPackage />} />
             <Route path='healPackage/create' element={<CreateProduct />} />
+            <Route path='category' element={<Category />}>
+            </Route>
+              <Route path='category/create' element={<CreateProduct />} />
           </Route>
         </Routes>
       </ThemeProvider>

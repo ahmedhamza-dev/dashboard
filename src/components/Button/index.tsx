@@ -8,7 +8,7 @@ const Button: React.FC<Props> = (props) => {
   const StyledButton = styled.button<Props>((props) => ({
     backgroundColor: props.bg ? props.bg : theme.palette.secondary.dark,
     border: "none",
-    padding: "10px 20px",
+    padding: "6px 15px",
     borderRadius: "6px",
     color: "white",
     fontSize: "1rem",
