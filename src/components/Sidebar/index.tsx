@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Divider,
@@ -76,7 +77,7 @@ const Sidebar: FC<SidebarProps> = ({
               </FlexBetween>
             </Box>
             <List>
-              {navItems.map(({ text, icon }) => {
+              {navItems.map(({ text, icon, path }) => {
                 if (!icon) {
                   return (
                     <Typography key={text} sx={{ m: "1.25rem" }}>
@@ -84,7 +85,7 @@ const Sidebar: FC<SidebarProps> = ({
                     </Typography>
                   );
                 }
-                const lcText = text.toLowerCase();
+                const lcText = path.toLowerCase();
 
                 return (
                   <ListItem key={text} disablePadding>

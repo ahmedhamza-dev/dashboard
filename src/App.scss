@@ -28,17 +28,10 @@
   color: #61dafb;
 }
 
-// ::-webkit-scrollbar {
-//   width: 10px;
-// }
-
-// ::-webkit-scrollbar-track {
-//   background: #b9babe;
-// }
-
-// ::-webkit-scrollbar-thumb {
-//   background: #ffe3a3;
-// }
+.css-t8hcva-MuiFormLabel-root-MuiInputLabel-root.Mui-focused,
+.css-40j64x-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
 
 @keyframes App-logo-spin {
   from {

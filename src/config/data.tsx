@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   HomeOutlined,
   ShoppingCartOutlined,
@@ -10,63 +12,73 @@ import {
   AdminPanelSettingsOutlined,
   TrendingUpOutlined,
   PieChartOutlined,
-} from "@mui/icons-material";
-
+} from '@mui/icons-material';
 export const navItems = [
   {
-    text: "Main",
+    text: 'Main',
+    path: 'Main',
     icon: <HomeOutlined />,
   },
   {
-    text: "Client Facing",
+    text: 'Package',
     icon: null,
   },
   {
-    text: "Products",
+    text: 'Heal Package',
+    path: 'HealPackage',
     icon: <ShoppingCartOutlined />,
   },
   {
-    text: "Customers",
+    text: 'Customers',
+    path: 'Customers',
     icon: <Groups2Outlined />,
   },
   {
-    text: "Transactions",
+    text: 'Transactions',
+    path: 'Transactions',
     icon: <ReceiptLongOutlined />,
   },
   {
-    text: "Geography",
+    text: 'Geography',
+    path: 'Geography',
     icon: <PublicOutlined />,
   },
   {
-    text: "Sales",
+    text: 'Sales',
     icon: null,
   },
   {
-    text: "Overview",
+    text: 'Overview',
+    path: 'Overview',
     icon: <PointOfSaleOutlined />,
   },
   {
-    text: "Daily",
+    text: 'Daily',
+    path: 'Daily',
     icon: <TodayOutlined />,
   },
   {
-    text: "Monthly",
+    text: 'Monthly',
+    path: 'Monthly',
     icon: <CalendarMonthOutlined />,
   },
   {
-    text: "Breakdown",
+    text: 'Breakdown',
+    path: 'Breakdown',
     icon: <PieChartOutlined />,
   },
   {
-    text: "Management",
+    text: 'Management',
     icon: null,
   },
   {
-    text: "Admin",
+    text: 'Admin',
+    path: 'Admin',
     icon: <AdminPanelSettingsOutlined />,
   },
   {
-    text: "Performance",
+    text: 'Performance',
+    path: 'Performance',
     icon: <TrendingUpOutlined />,
   },
 ];
