@@ -1,3 +1,5 @@
+import { Theme } from "@mui/material";
+
 export interface Props
   extends React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -6,4 +8,5 @@ export interface Props
     bg?: string,
     variant?: "link" | "outline" | "primary" | "secondary",
     text?: string,
+    theme?: Theme
 }

@@ -2,12 +2,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import modeSlice from './slices/mode.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
-import { userApi } from './RTK/userApi';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import userSlice from './slices/user.slice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
+import { categoryApi } from '../pages/Dashboard/Category/api';
+import { HealPackageApi } from '../pages/Dashboard/HealPackage/api';
 
 const persistConfig = {
   key: 'root',
@@ -16,7 +17,8 @@ const persistConfig = {
 const userReducer = combineReducers({
   mode: modeSlice.reducer,
   user: userSlice.reducer,
-  [userApi.reducerPath]: userApi.reducer,
+  [categoryApi.reducerPath]: categoryApi.reducer,
+  [HealPackageApi.reducerPath]: HealPackageApi.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, userReducer);
 
@@ -27,7 +29,7 @@ const store = configureStore({
       serializableCheck: {
         ignoreActions: true,
       },
-    }).concat(thunk, userApi.middleware),
+    }).concat(thunk, categoryApi.middleware, HealPackageApi.middleware),
 });
 
 export const persistor = persistStore(store);

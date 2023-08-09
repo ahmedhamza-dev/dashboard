@@ -32,7 +32,14 @@
 .css-40j64x-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   color: rgba(0, 0, 0, 0.6) !important;
 }
-
+.MuiTablePagination-root {
+  p {
+    margin-bottom: 0 !important;
+  }
+}
+.MuiAutocomplete-inputRoot {
+  padding-right: 0 !important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
